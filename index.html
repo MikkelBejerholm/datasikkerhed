@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Quiz</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+  <div class="quiz-container">
+    <div id="intro-container">
+      <h1>Welcome to the Password Quiz</h1>
+      <p>This quiz will test your knowledge of password security. Are you ready?</p>
+      <button id="start-btn">Start Quiz</button>
+    </div>
+    <div id="question-container" style="display: none;">
+        <p id="question-text"></p>
+        <div id="options-container"></div>
+        <button id="next-question-btn" style="display: none;">Next Question</button>
+      </div>
+    <button id="next-btn" style="display: none;">Next</button>
+  </div>
+
+  <script src="data.js"></script>
 </body>
 </html>
