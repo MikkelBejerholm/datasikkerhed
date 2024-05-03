@@ -1,89 +1,89 @@
-const questions = [
+document.addEventListener('DOMContentLoaded', function () {
+  const introductionElement = document.getElementById('introduction');
+  const startButton = document.getElementById('startButton');
+  const quizElement = document.getElementById('quiz');
+
+  startButton.addEventListener('click', function() {
+    introductionElement.style.display = 'none';
+    quizElement.style.display = 'block';
+  });
+
+  const questionElement = document.getElementById('question');
+  const options = document.querySelectorAll('.option');
+  const nextButton = document.getElementById('nextButton');
+  const result = document.getElementById('result');
+
+  const questions = [
     {
-      question: "What is a strong password?",
-      options: ["123456", "password", "P@ssw0rd", "CorrectHorseBatteryStaple"],
-      answer: 3 // index of the correct answer in the options array
+      question: 'Hvad er et sikkert password?',
+      options: ['Enkelt ord', 'Dit fødselsdag', 'En kombination af bogstaver, tal og specialtegn', 'Dit yndlingshold']
     },
     {
-      question: "How often should you change your password?",
-      options: ["Every day", "Once a year", "Never", "Every 3 months"],
-      answer: 2 // index of the correct answer in the options array
+      question: 'Hvor mange tegn bør et sikkert password minimum være?',
+      options: ['4', '8', '12', '16']
     },
-    // Add more questions here
-  ];
-  
-  let currentQuestionIndex = 0;
-  let answered = false; // Variable til at spore, om brugeren har svaret på det nuværende spørgsmål
-  
-  const introContainer = document.getElementById('intro-container');
-  const questionContainer = document.getElementById('question-container');
-  const nextButton = document.getElementById('next-btn');
-  const startButton = document.getElementById('start-btn');
-  nextButton.style.display = 'none'; // Skjul "Next" knappen i starten
-  
-  function handleCorrectAnswer() {
-    nextButton.disabled = false;
-    document.getElementById('next-question-btn').style.display = 'block'; // Vis "Next Question" knappen
-    
-    // Fjern event listeneren for "Next" knappen, hvis den allerede eksisterer, for at undgå flere tilføjelser
-    nextButton.removeEventListener('click', nextQuestion);
-    
-    // Tilføj event listener til "Next" knappen for at gå videre til næste spørgsmål
-    nextButton.addEventListener('click', nextQuestion);
-  }
-  
-  function checkAnswer(selectedIndex) {
-    if (!answered) { // Check om brugeren allerede har svaret
-      answered = true;
-      if (selectedIndex === questions[currentQuestionIndex].answer) {
-        alert('Correct answer!');
-        handleCorrectAnswer();
-      } else {
-        alert('Incorrect answer. Try again!');
-        // Gør alle svarmuligheder aktive igen
-        const optionButtons = document.querySelectorAll('.option-btn');
-        optionButtons.forEach(button => {
-          button.disabled = false;
-          button.classList.remove('disabled');
-        });
-      }
-      // Tilføj event listener til "Next Question" knappen
-      document.getElementById('next-question-btn').addEventListener('click', nextQuestion);
+    {
+      question: 'Hvad er en to-faktor-autentifikation?',
+      options: ['Et password med to ord', 'En sikkerhedsnøgle, der genereres på din telefon', 'En nøglebrik, du bærer med dig', 'En biometrisk autentifikation']
+    },
+    {
+      question: 'Hvad er phishing?',
+      options: ['En fiskeart', 'En type malware', 'Et forsøg på at få personlig information ved at udgive sig for at være en pålidelig kilde', 'En metode til at beskytte dit password']
+    },
+    {
+      question: 'Hvordan kan man beskytte sig mod ransomware?',
+      options: ['Ved at have en opdateret antivirus-software', 'Ved at betale løsesummen', 'Ved at dele sit password med andre', 'Ved at klikke på mistænkelige links']
     }
-  }
-  
-  function showQuestion(question) {
-    answered = false; // Nulstil svaret, når et nyt spørgsmål vises
-    questionContainer.style.display = 'block';
-    introContainer.style.display = 'none';
-    document.getElementById('question-text').textContent = question.question;
-    const optionsContainer = document.getElementById('options-container');
-    optionsContainer.innerHTML = '';
-    question.options.forEach((option, index) => {
-      const optionElement = document.createElement('button');
-      optionElement.textContent = option;
-      optionElement.classList.add('option-btn');
-      optionElement.addEventListener('click', () => {
-        checkAnswer(index);
-        // Deaktiver valgt svarmulighed for at forhindre flere klik
-        optionElement.disabled = true;
-        optionElement.classList.add('disabled');
-      });
-      optionsContainer.appendChild(optionElement);
+    // Tilføj flere spørgsmål efter behov
+  ];
+
+  const correctAnswers = [
+    'En kombination af bogstaver, tal og specialtegn',
+    '12',
+    'En sikkerhedsnøgle, der genereres på din telefon',
+    'Et forsøg på at få personlig information ved at udgive sig for at være en pålidelig kilde',
+    'Ved at have en opdateret antivirus-software'
+  ];
+
+  let currentQuestionIndex = 0;
+
+  showQuestion();
+
+  nextButton.addEventListener('click', nextQuestion);
+
+  function showQuestion() {
+    const currentQuestion = questions[currentQuestionIndex];
+    questionElement.textContent = `Spørgsmål ${currentQuestionIndex + 1}: ${currentQuestion.question}`;
+    options.forEach((option, index) => {
+      option.textContent = currentQuestion.options[index];
     });
   }
-  
+
+  function checkAnswer(event) {
+    const selectedOption = event.target;
+    const selectedAnswer = selectedOption.textContent;
+    const correctAnswer = correctAnswers[currentQuestionIndex];
+
+    if (selectedAnswer === correctAnswer) {
+      result.textContent = 'Korrekt svar!';
+      nextButton.disabled = false;
+    } else {
+      result.textContent = 'Forkert svar. Prøv igen.';
+    }
+  }
+
   function nextQuestion() {
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
-      showQuestion(questions[currentQuestionIndex]);
-      nextButton.disabled = true; // Deaktiver "Next" knappen, når et nyt spørgsmål vises
+      showQuestion();
+      result.textContent = '';
+      nextButton.disabled = true;
     } else {
-      alert('Quiz finished!');
+      alert('Tillykke! Du har gennemført quizzen.');
     }
   }
-  
-  nextButton.addEventListener('click', nextQuestion);
-  startButton.addEventListener('click', () => {
-    showQuestion(questions[currentQuestionIndex]);
+
+  options.forEach(option => {
+    option.addEventListener('click', checkAnswer);
   });
+});

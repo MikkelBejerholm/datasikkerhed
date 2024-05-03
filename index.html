@@ -7,18 +7,26 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="quiz-container">
-    <div id="intro-container">
-      <h1>Welcome to the Password Quiz</h1>
-      <p>This quiz will test your knowledge of password security. Are you ready?</p>
-      <button id="start-btn">Start Quiz</button>
+  <div id="introduction">
+    <h1>Velkommen til Password Quizzen</h1>
+    <p>Test din viden om datasikkerhed ved at besvare nedenstående spørgsmål. Husk at vælge det sikreste svar!</p>
+    <button id="startButton">Klik her for at begynde quizzen</button>
+  </div>
+
+  <div class="container">
+    <!-- Indhold -->
+  </div>
+  
+  <div id="quiz" style="display: none;">
+    <div id="question"></div>
+    <div id="options">
+      <div class="option"></div>
+      <div class="option"></div>
+      <div class="option"></div>
+      <div class="option"></div>
     </div>
-    <div id="question-container" style="display: none;">
-        <p id="question-text"></p>
-        <div id="options-container"></div>
-        <button id="next-question-btn" style="display: none;">Next Question</button>
-      </div>
-    <button id="next-btn" style="display: none;">Next</button>
+    <button id="nextButton" disabled>Gå videre til næste spørgsmål</button>
+    <div id="result"></div>
   </div>
 
   <script src="data.js"></script>

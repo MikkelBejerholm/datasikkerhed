@@ -1,44 +1,58 @@
 @charset "UTF-8";
 body {
   font-family: Arial, sans-serif;
+  background-color: #f8f9fa; /* Ændret baggrundsfarve */
   margin: 0;
   padding: 0;
 }
 
-.quiz-container {
-  max-width: 600px;
-  margin: 50px auto;
-  text-align: center;
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
-#question-container {
+#introduction,
+#quiz {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#quiz {
+  display: none;
   margin-bottom: 20px;
 }
 
-.option-btn {
-  display: block;
-  width: 100%;
+.option {
+  cursor: pointer;
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
-  background-color: #f9f9f9;
-  cursor: pointer;
+  border-radius: 5px;
 }
 
-#next-btn {
+#nextButton {
+  margin-top: 20px;
   padding: 10px 20px;
   border: none;
+  border-radius: 5px;
   background-color: #007bff;
   color: #fff;
-  font-size: 16px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-#next-btn:hover {
+#nextButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+#nextButton:hover:not(:disabled) {
   background-color: #0056b3;
 }
 
-/* Fjern denne regel, da den skjuler knappen til at gå videre i quizzen */
-#next-btn {
-  display: block;
+#result {
+  margin-top: 10px;
 }/*# sourceMappingURL=style.css.map */
