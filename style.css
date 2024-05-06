@@ -6,6 +6,37 @@ body {
   padding: 0;
 }
 
+#startButton {
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#startButton:hover {
+  background-color: #0056b3;
+}
+
+.scenario-header {
+  font-weight: bold;
+  font-size: 1.4em; /* Juster størrelsen efter behov */
+  margin-bottom: 20px;
+}
+
+#scenarioContainer {
+  text-align: center; /* Justerer billedet og scenariet til midten */
+}
+
+#scenarioImage img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 35px; /* Tilføjet en margen nedenfor billedet */
+}
+
 .container {
   display: flex;
   justify-content: center;

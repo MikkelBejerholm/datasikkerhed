@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const introductionElement = document.getElementById('introduction');
   const startButton = document.getElementById('startButton');
   const quizElement = document.getElementById('quiz');
+  const scenarioImageElement = document.getElementById('scenarioImage'); 
 
   startButton.addEventListener('click', function() {
     introductionElement.style.display = 'none';
@@ -17,23 +18,26 @@ document.addEventListener('DOMContentLoaded', function () {
   const scenarios = [
     {
       scenario: 'Du modtager en e-mail, der hævder at være fra din bank. Den beder om at opdatere dine loginoplysninger ved at klikke på et link. Hvad gør du?',
-      options: ['Klik på linket og opdater dine oplysninger', 'Ignorer e-mailen', 'Besvar e-mailen og bed om flere oplysninger', 'Del dine oplysninger med e-mailen']
+      image: 'img/b1oplysninger.jpg',
+      options: ['Klik på linket og opdater dine oplysninger', 'Ignorer e-mailen', 'Besvar e-mailen og bed om flere oplysninger', 'Del dine oplysninger med e-mailen'],
+      correctIndex: 1,
+      explanation: 'Det rigtige valg er at ignorere e-mailen. Banker vil aldrig bede dig om at opdatere dine oplysninger via en e-mail, især ikke med et link. Dette er et forsøg på phishing.'
     },
     {
       scenario: 'Mens du browser på internettet, vises der et popup-vindue med en besked om at din computer er blevet inficeret med virus. Hvad gør du?',
-      options: ['Klik på popup-vinduet for at fjerne virussen', 'Luk browseren og kør en antivirus-scanning', 'Ignorer popup-vinduet', 'Del din computerens oplysninger med popup-vinduet']
+      image: 'img/b2virus.jpg',
+      options: ['Klik på popup-vinduet for at fjerne virussen', 'Luk browseren og kør en antivirus-scanning', 'Ignorer popup-vinduet', 'Del din computerens oplysninger med popup-vinduet'],
+      correctIndex: 1,
+      explanation: 'Det korrekte valg er at lukke browseren og køre en antivirus-scanning. Popup-vinduer, der hævder at din computer er inficeret, er ofte forsøg på at installere malware.'
     },
     {
       scenario: 'En ukendt person kontakter dig og beder om dine personlige oplysninger over telefonen, idet de hævder at være fra en legitim organisation. Hvad gør du?',
-      options: ['Del dine oplysninger', 'Bed om yderligere verifikation af deres identitet', 'Afvis at give dine oplysninger', 'Spørg hvorfor de har brug for oplysningerne']
+      image: 'img/b3caller.jpg',
+      options: ['Del dine oplysninger', 'Bed om yderligere verifikation af deres identitet', 'Afvis at give dine oplysninger', 'Spørg hvorfor de har brug for oplysningerne'],
+      correctIndex: 2,
+      explanation: 'Det rigtige valg er at afvise at give dine oplysninger. Ægte organisationer vil aldrig bede om dine personlige oplysninger over telefonen uden en begrundet årsag.'
     }
     // Tilføj flere scenarier efter behov
-  ];
-
-  const correctAnswers = [
-    'Ignorer e-mailen',
-    'Luk browseren og kør en antivirus-scanning',
-    'Afvis at give dine oplysninger'
   ];
 
   let currentScenarioIndex = 0;
@@ -45,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function showScenario() {
     const currentScenario = scenarios[currentScenarioIndex];
     questionElement.textContent = `Scenarie ${currentScenarioIndex + 1}: ${currentScenario.scenario}`;
+    scenarioImageElement.innerHTML = `<img src="${currentScenario.image}" alt="Scenario Image">`; 
     options.forEach((option, index) => {
       option.textContent = currentScenario.options[index];
     });
@@ -53,10 +58,11 @@ document.addEventListener('DOMContentLoaded', function () {
   function checkAnswer(event) {
     const selectedOption = event.target;
     const selectedAnswer = selectedOption.textContent;
-    const correctAnswer = correctAnswers[currentScenarioIndex];
+    const correctIndex = scenarios[currentScenarioIndex].correctIndex;
+    const correctAnswer = scenarios[currentScenarioIndex].options[correctIndex];
 
     if (selectedAnswer === correctAnswer) {
-      result.textContent = 'Godt valg!';
+      result.textContent = 'Godt valg! ' + scenarios[currentScenarioIndex].explanation;
       nextButton.disabled = false;
     } else {
       result.textContent = 'Forkert valg. Du er blevet hacket. Prøv igen.';
