@@ -1,13 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
   const introductionElement = document.getElementById('introduction');
-  const startButton = document.getElementById('startButton');
+  const startInput = document.getElementById('startInput');
   const quizElement = document.getElementById('quiz');
   const scenarioImageElement = document.getElementById('scenarioImage'); 
 
-  startButton.addEventListener('click', function() {
-    introductionElement.style.display = 'none';
-    quizElement.style.display = 'block';
-    startScenario();
+  startInput.addEventListener('keyup', function(event) {
+    if (event.key === "Enter" && startInput.value.toLowerCase() === "ja") {
+      introductionElement.style.display = 'none';
+      quizElement.style.display = 'block';
+      startScenario();
+    }
   });
 
   const questionElement = document.getElementById('question');
@@ -37,7 +39,6 @@ document.addEventListener('DOMContentLoaded', function () {
       correctIndex: 2,
       explanation: 'Det rigtige valg er at afvise at give dine oplysninger. Ægte organisationer vil aldrig bede om dine personlige oplysninger over telefonen uden en begrundet årsag.'
     }
-    // Tilføj flere scenarier efter behov
   ];
 
   let currentScenarioIndex = 0;

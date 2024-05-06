@@ -34,7 +34,7 @@ body {
 #scenarioImage img {
   max-width: 100%;
   height: auto;
-  margin-bottom: 35px; /* Tilføjet en margen nedenfor billedet */
+  margin-top: 20px; /* Justerer afstanden mellem inputfeltet og billedet */
 }
 
 .container {
@@ -43,7 +43,18 @@ body {
   align-items: flex-start;
 }
 
-#introduction,
+#introduction {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center; /* Centrerer teksten vandret */
+}
+
+#startInput {
+  margin-bottom: 20px; /* Skaber plads mellem inputfeltet og billedet */
+}
+
 #quiz {
   background-color: rgba(255, 255, 255, 0.9);
   padding: 20px;
