@@ -45,7 +45,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function startScenario() {
     showScenario();
-    startImageSlider(); // Start billedslideren
   }
 
   function showScenario() {
@@ -87,24 +86,4 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   nextButton.addEventListener('click', nextScenario);
-
-  // Funktion til at starte billedslideren
-  function startImageSlider() {
-    setInterval(changeImage, 2000); // Skift billede hvert 2. sekund
-  }
-
-  // Funktion til at skifte billedet
-  function changeImage() {
-    const currentScenario = scenarios[currentScenarioIndex];
-    const currentImage = scenarioImageElement.querySelector('img');
-    const imageIndex = currentScenario.image.indexOf('.jpg');
-    const baseImagePath = currentScenario.image.substring(0, imageIndex); // Fjern filtypenavnet
-
-    // Skift til det næste billede baseret på den nuværende sti
-    if (currentImage.src === `${baseImagePath}.jpg`) {
-      currentImage.src = `${baseImagePath}-2.jpg`; // Skift til den anden version
-    } else {
-      currentImage.src = `${baseImagePath}.jpg`; // Skift tilbage til den oprindelige version
-    }
-  }
 });
