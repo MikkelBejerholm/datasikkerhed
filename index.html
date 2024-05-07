@@ -7,37 +7,42 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  
-  <div id="introduction">
-    <h1>Velkommen til vores datasikkerhedsprojekt!</h1>
-    <p>Velkommen til en interaktiv rejse gennem verdenen af datasikkerhed. I dette projekt vil du blive præsenteret for forskellige scenarier, hvor du skal træffe valg, der vil påvirke sikkerheden af dine data. Test din viden om datasikkerhed ved at besvare nedenstående spørgsmål. Husk at vælge det sikreste svar!</p>
 
-    <p>Er du klar til at tage kontrol over din datasikkerhed? Skriv "ja" for at begynde:</p>
-    <input type="text" id="startInput">
-    <img src="" alt="">
+<div id="introduction">
+  <h1>Velkommen til vores datasikkerhedsprojekt!</h1>
+  <p>Velkommen til en interaktiv rejse gennem verdenen af datasikkerhed. I dette projekt vil du blive præsenteret for forskellige scenarier, hvor du skal træffe valg, der vil påvirke sikkerheden af dine data. Test din viden om datasikkerhed ved at besvare nedenstående spørgsmål. Husk at vælge det sikreste svar!</p>
+
+  <p>Er du klar til at tage kontrol over din datasikkerhed? Skriv "ja" for at begynde:</p>
+  <input type="text" id="startInput">
+</div>
+
+
+
+<div class="container">
+
+  <div class="slider">
+    <img src="img/b1oplysninger-2.jpg" alt="Billede 1" class="slide active">
+    <img src="img/b2virus-2.jpg" alt="Billede 2" class="slide">
+    <img src="img/b3caller-2.jpg" alt="Billede 3" class="slide">
   </div>
+</div>
 
-  <div class="container">
-    <!-- Indhold -->
+<div id="quiz" style="display: none;">
+  <div id="scenarioContainer">
+    <div id="scenarioImage"></div>
+    <div id="question" class="scenario-header"></div>
   </div>
-
-  <div id="quiz" style="display: none;">
-    <div id="scenarioContainer">
-      <div id="scenarioImage"></div>
-      <div id="question" class="scenario-header"></div>
-    </div>
-    <div id="options">
-      <div class="option"></div>
-      <div class="option"></div>
-      <div class="option"></div>
-      <div class="option"></div>
-    </div>
-    <button id="nextButton" disabled>Gå videre til næste spørgsmål</button>
-    <div id="result"></div>
+  <div id="options">
+    <div class="option"></div>
+    <div class="option"></div>
+    <div class="option"></div>
+    <div class="option"></div>
   </div>
+  <button id="nextButton" disabled>Gå videre til næste spørgsmål</button>
+  <div id="result"></div>
+</div>
 
-
-  
-  <script src="data.js"></script>
+<script src="data.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
